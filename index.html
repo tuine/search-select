@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>search-select</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				font-family: "微软雅黑";
+				background: #eee;
+			}
+			
+			.left,
+			.right {
+				width: 100%;
+				height: 700px;
+				padding: 40px 20px;
+				box-sizing: border-box;
+			}
+			
+			.left {
+				height: 500px;
+			}
+			
+			.container {
+				width: 20%;
+				height: 100%;
+				float: left;
+				margin-left: 10%;
+			}
+			
+			.des {
+				float: right;
+				width: 48%;
+				height: 100%;
+				border: 1px dashed #000;
+				box-sizing: border-box;
+			}
+			
+			.info {
+				margin-top: 10px;
+				padding-left: 20px;
+				color: #cc5522;
+				font-size: 20px;
+				margin-bottom: 10px;
+				text-align: center;
+			}
+			
+			pre {
+				font-family: "微软雅黑";
+				font-size: 14px;
+			}
+			
+			.title {
+				font-size: 14px;
+				font-weight: bold;
+				color: #cc5522;
+			}
+			
+			.content {
+				font-size: 13px;
+				color: #333;
+				margin-top: 6px;
+			}
+		</style>
+		<link rel="stylesheet" href="style/search-select.css" type="text/css">
+	</head>
+
+	<body>
+		<div class="left">
+			<div id="container1" class="container">
+				<div id="search-select"></div>
+			</div>
+			<div class="des">
+				<p class="info">AJAX实例参数</p>
+				<pre>
+	var config = {
+		targetEle:document.getElementById("search-select"),
+		field:"name",//默认展示字段、搜索字段
+		dataValue:"id",//下拉选项data-value值,默认data-array-num=顺序
+		//eg:&lt;li data-array-num=&quot;0&quot; data-value=&quot;123&quot;&gt;search&lt;/li&gt;
+		getData:getData,//AJAX搜索函数
+		isAjax: true//默认false 非AJAX
+	}
+	var searchSelect = new SearchSelect(config);//初始化对象
+	searchSelect.selectCallBack = function (data) {//选中回调函数
+		alert(JSON.stringify(data));
+	}
+	function getData(keyword) {
+		//jquery方法
+		var url = '',data={keyword:keyword};
+		$.post(url, data, function(data){
+			searchSelecti.pushData(data);//添加数据结果
+		}, 'json');
+	}
+				</pre>
+			</div>
+		</div>
+		<div class="right">
+			<div id="container2" class="container">
+				<div id="search-select1"></div>
+			</div>
+			<div class="des">
+				<p class="info">数据源实例参数</p>
+				<pre>
+	var config1 = {
+		targetEle:document.getElementById("search-select1"),//dom
+		field:"name",//默认下拉展示数据
+		dataValue:"id",//li data-value值
+		filterColumn: ['key','name'],//搜索字段
+		sensitive: true,//是否区分大小写
+		sourceData:[{name:"search",key:'I',id:123},{name:"select",key:'He',id:456},{name:"search-select",key:'You',id:789}],//数据源
+	}
+	var searchSelect1 = new SearchSelect(config1);
+	searchSelect1.selectCallBack = function (data) {
+		alert(JSON.stringify(data));
+	}
+				</pre>
+			</div>
+		</div>
+		
+		<script type="text/javascript" src="js/search-select.js"></script>
+		<script type="text/javascript">
+			var config = {
+				targetEle:document.getElementById("search-select"),
+				getData:getData,
+				field:"name",
+				dataValue:"id",
+				isAjax: true
+			}
+			var searchSelect = new SearchSelect(config);
+			searchSelect.selectCallBack = function (data) {
+				alert(JSON.stringify(data));
+			}
+			function getData(keyword) {
+				searchSelect.sourceData = [{name:"search",key:'a',id:123},{name:"select",key:'b',id:456},{name:"search-select",key:'c',id:789}];
+				setTimeout(function () {
+					searchSelect.filter(keyword);
+				},500)
+			}
+			var config1 = {
+				targetEle:document.getElementById("search-select1"),//dom
+				field:"name",//默认下拉展示数据
+				dataValue:"id",//li data-value值
+				filterColumn: ['key','name'],//搜索字段
+				sensitive: true,
+				sourceData:[{name:"search",key:'I',id:123},{name:"select",key:'He',id:456},{name:"search-select",key:'You',id:789}],//数据源
+			}
+			var searchSelect1 = new SearchSelect(config1);
+			searchSelect1.selectCallBack = function (data) {
+				alert(JSON.stringify(data));
+			}
+		</script>
+	</body>
+
+</html>
