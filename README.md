@@ -12,7 +12,7 @@
 ---
 
 ## 例1数据源
-```
+```javascript
 	var config1 = {
 		targetEle:document.getElementById("search-select1"),//dom
 		field:"name",//默认下拉展示数据
@@ -28,7 +28,7 @@
 ```
 
 ## 例2AJAX
-```
+```javascript
 var config = {
 		targetEle:document.getElementById("search-select"),
 		field:"name",//默认展示字段、搜索字段
