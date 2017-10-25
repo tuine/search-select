@@ -1,13 +1,10 @@
 var SearchSelect = function (config) {
     this.config = config;
     this.targetEle = null;
-    this.pagination = false;
     this.switchLoadData = true;
     this.currentSelect = undefined;
     this.field = 'name';
     this.dataValue = null;
-    this.keyWordSearch = true;
-    this.currentDate = 0;
     this.timer = null;
     this.sensitive = false;
     this.isAjax = false;
