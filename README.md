@@ -1,5 +1,5 @@
 # search-select
-表单Select，可搜索选中，支持Ajax搜索或初始化数据源，不依赖JQuery
+表单Select，可搜索选中，支持Ajax搜索或初始化数据源，不依赖JQuery  
 例子见 [查看示例](http://git.tuine.me/search-select)
 ### 功能
 * 数据源搜索
